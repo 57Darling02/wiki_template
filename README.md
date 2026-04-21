@@ -9,7 +9,6 @@ layout: doc
 
 基于VitePress和Element Plus的卡片式仿butterfly主题。
 结合obsidian实现 外联知识库的灵活变动博客方案！
-
 ##  功能
 
 - 静态博客，不需要服务器也能有自己的个人网站
