@@ -1,0 +1,16 @@
+name: Trigger Blog Rebuild
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch event to blog repo
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PAT }}
+          repository: yourname/your-blog-repo
+          event-type: contents-updated
