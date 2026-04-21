@@ -13,5 +13,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.PAT }} # PAT stored in the content/wiki repo
-          repository: ${{ secrets.BLOG_REPOSITORY }} # e.g. 57Darling02/57Darling02.github.io
+          repository: ${{ secrets.BLOG_REPO }} # e.g. 57Darling02/57Darling02.github.io
           event-type: contents-updated
