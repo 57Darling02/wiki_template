@@ -8,28 +8,24 @@ layout: doc
 # VitePress-Butterfly 主题
 
 基于VitePress和Element Plus的卡片式仿butterfly主题。
-结合obsidian成为**动态博客**方案！
+结合obsidian实现 外联知识库的灵活变动博客方案！
 
 ##  功能
 
 - 静态博客，不需要服务器也能有自己的个人网站
-- vitepress完善的工作流自动构建，只需要首次配置
+- vitepress完善的工作流自动构建
 - vite的静态资源自动优化，不需要图床也能够插入图片
-
-## 概览
-
 
 ## 法一：快速从零开始搭建一个博客
 
 ### 1.获取模板
 分别将下面两个模板项目fork到自己的仓库：
+1. [57Darling02/VitePress_butterfly(github.com)](https://github.com/57Darling02/VitePress_butterfly)
+2. [57Darling02/wiki_template (github.com)](https://github.com/57Darling02/wiki_template)
 
-1. [57Darling02/blog-post(github.com)](https://github.com/57Darling02/blog-post)
-2. [57Darling02/VitePress_butterfly(github.com)](https://github.com/57Darling02/VitePress_butterfly)
+第一个放网页源码，必须公开，推荐命名为`[你的GITHUB账号.github.io]`
+第二个用于存放文章，如果设为私密则需要PAT
 
-
-第一个用于存放文章，可以设为私密
-第二个放网页源码，必须公开，推荐命名为`[你的GITHUB账号.github.io]`
 ![](附件/Pasted%20image%2020251225014512.png)
 
 ### 2.配置变量
