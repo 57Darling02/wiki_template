@@ -78,9 +78,9 @@ friendlink:
 
 # Footer Configuration
 footer:
-  message: "Released under the MIT License."
-  copyright: "Copyright © 2025-present My Awesome Site"
-  createdTime: "2023-01-01"
+  message: "Hello World!"
+  copyright: "Power by VitePress_butterfly"
+  createdTime: "2025-01-01"
 
 # Comments (Giscus)
 comments:
