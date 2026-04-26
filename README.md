@@ -55,7 +55,11 @@ layout: doc
 ```
 
 #### 封面配置
+
+::: warning
 注意，封面的图片资源不可以相对引用，需要像配置文件那样，配置`public/cover.png`后使用
+:::
+
 
 ```markdown
 ---
