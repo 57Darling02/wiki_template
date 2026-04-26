@@ -21,7 +21,7 @@ home:
   subTitles:
     - "世界上只有一种英雄主义,那就是"
     - "在认清生活的真相后,依然热爱生活"
-  firstViewHeight: 60
+  firstViewHeight: 100
 
 # Post list
 # sortMethod: "date" or "lastUpdated".
