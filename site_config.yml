@@ -12,16 +12,15 @@ author: "57Darling02"
 # isDark: null follows system, true forces dark, false forces light.
 # background accepts a color value or a public asset path such as "/wallpaper/1.webp".
 isDark: null
-background: "/wallpaper/2.webp"
+background: ""
 bg_rainfall: false
 
 # Home page
 home:
   mainTitle: "My Custom Site"
   subTitles:
-    - "世界上只有一种英雄主义"
-    - "那就是在认清生活的真相后"
-    - "依然热爱生活"
+    - "世界上只有一种英雄主义,那就是"
+    - "在认清生活的真相后,依然热爱生活"
   firstViewHeight: 60
 
 # Post list
@@ -34,10 +33,10 @@ lastUpdated:
   use: true
 
 # Profile card
-avatar: "/image/image.png"
+avatar: "/image/Avatar.png"
 name: "57Darling02"
 position: "NPC"
-bio: "红红火火恍恍惚惚"
+bio: "this is a blog description"
 socialLinks:
   - name: "GitHub"
     icon: "fa-brands fa-github"
@@ -61,7 +60,7 @@ menuItems:
 # Navigation music player
 # volume range: 0 ~ 1.
 musicPlayer:
-  enabled: false
+  enabled: true
   url: "https://music.163.com/song/media/outer/url?id=3372997533.mp3"
   name: "lofi bbox"
   artist: "Shi Nian Yi Shi"
