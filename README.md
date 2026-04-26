@@ -17,7 +17,7 @@ layout: doc
 > 不要使用wiki形式！
 3. 展示所有文件类型，用以显示主题配置文件`site_config.yml`
 参考配置页面如图:
-![](附件/Pasted%20image%2020260426150542.png)
+![](附件/Pasted%20image%2020260426190853.png)
 ### 博客配置
 本仓库根目录下`site_config.yml`为配置文件。
 
