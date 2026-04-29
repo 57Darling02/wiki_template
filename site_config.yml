@@ -25,7 +25,7 @@ home:
 
 # Post list
 # sortMethod: "date" or "lastUpdated".
-pageSize: 8
+pageSize: 6
 sortMethod: "date"
 
 # Last updated display
