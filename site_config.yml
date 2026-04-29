@@ -14,7 +14,7 @@ author: "57Darling02"
 # isDark: null follows system, true forces dark, false forces light.
 # background accepts a color value or a public asset path such as "/wallpaper/1.webp".
 isDark: null
-background: "#FDF8F2"
+background: ""
 bg_rainfall: false
 
 # Home page
