@@ -40,20 +40,58 @@ avatar: "/image/avatar.png"
 background: "/wallpaper/1.webp"
 ```
 
-### 文章书写
-文章属性中有`layout: doc`时，该文章才会展示。
-在.md文档的开头加上如下格式。
-```markdown
+### 写文章
+```md
 ---
-title: 文章标题
-date: 2024-03-20
-author: 作者
-tags: VitePress
-cover: url... 
+title: Hello World
+date: 2026-01-01
+author: Me
 layout: doc
 ---
+
+# Hello World
 ```
 
+文章需要带 `layout: doc`才 会进入首页、归档、标签等文章流。
+#### 4.2 写页面
+
+如果希望展示自己的页面，本文也提供VUE完成自己的页面 例如[友链页面](https://vitepress.57d02.cn/FriendLink/)的效果 在知识库中的配置见[模板仓库的FriendLink文件夹](https://github.com/57Darling02/wiki_template/tree/main/FriendLink)
+
+比如我希望xxx/FriendLink创建页面，则只需要在目标链接对应目录下完成页面：
+
+- 写好vue页面于FriendLink/FriendLinkPage.vue
+- 在FriendLink/index.md中引入，配置`layout: page`
+
+```md
+---
+title: FriendLink
+layout: page
+---
+
+<script setup>
+import FriendLinkPage from './FriendLinkPage.vue'
+</script>
+<ClientOnly>
+  <FriendLinkPage />
+</ClientOnly>
+```
+
+然后在 `site_config.yml` 的 `menuItems` 中手动配置,告知访客入口即可。
+
+短内容可以先使用自定义 layout，例如：
+
+```md
+---
+layout: shuoshuo
+date: 2026-01-01
+---
+
+今天也在认真生活。
+```
+
+这类内容当前只会被构建保留，不会影响现有文章展示；之后可以再做专门的“说说”页面。
+
+推送知识库后，它会通知主题仓库重新部署。
 #### 封面配置
 
 ::: warning
