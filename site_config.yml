@@ -6,7 +6,7 @@
 site_name: "My Awesome Site"
 site_description: "这是一个使用 VitePress 构建的博客站点。"
 # SEO uses this as the canonical domain and sitemap host.
-site_url: "https://example.com/"
+site_url: "https://vitepress.57d02.cn/"
 lang: "zh-CN"
 author: "57Darling02"
 
