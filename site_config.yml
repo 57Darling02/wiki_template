@@ -12,7 +12,7 @@ author: "57Darling02"
 
 # Visual experience
 # isDark: null follows system, true forces dark, false forces light.
-# background accepts a color value(HEX) or a public asset path such as "/wallpaper/1.webp".
+# Leave background empty for the built-in adaptive gradient, or use a HEX color or public asset path.
 isDark: null
 background: ""
 bg_rainfall: false
@@ -21,10 +21,9 @@ bg_rainfall: false
 home:
   mainTitle: "My Custom Site"
   subTitles:
-    - "写 Markdown/文章/页面/VUE组件"
-    - "推送"
+    - "写 Markdown"
+    - "推送文章"
     - "自动上线"
-  firstViewHeight: 100
 
 # Post list
 # sortMethod: "date" or "lastUpdated".
@@ -36,30 +35,35 @@ lastUpdated:
   use: true
 
 # Profile card
-avatar: "/image/Avatar.png"
+avatar: "/image/image.png"
 name: "57Darling02"
-position: "NPC"
-bio: "红红火火恍恍惚惚"
+signature: "NPC"
+introduction: "红红火火恍恍惚惚"
 socialLinks:
   - name: "GitHub"
+    # icon supports Lucide kebab-case names and Font Awesome fa-* classes.
+    # Font Awesome CSS is loaded only when a fa-* icon is configured.
     icon: "fa-brands fa-github"
+    # Replace icon with iconUrl for a local brand SVG, for example:
+    # iconUrl: "/image/github.svg"
     url: "https://github.com/57Darling02/"
 
 # Navbar menu
 # link uses site paths such as "/FriendLink/" or external URLs such as "https://example.com".
 menuItems:
-  - label: "更多"
-    icon: "fa-solid fa-compass"
+  - key: more
+    label: 更多
+    icon: "compass"
     children:
-      - key: "friends"
-        label: "友链"
-        icon: "fa-solid fa-user-group"
-        link: "/FriendLink/"
+      - key: friends
+        label: 友链
+        icon: users
+        link: /FriendLink/
 
 # Navigation music player
 # volume range: 0 ~ 1.
 musicPlayer:
-  enabled: true
+  enabled: false
   url: "https://music.163.com/song/media/outer/url?id=3372997533.mp3"
   name: "lofi bbox"
   artist: "Shi Nian Yi Shi"
