@@ -580,34 +580,6 @@ export default config
 
 :::
 
-也可以在代码组中[导入代码片段](#import-code-snippets)：
-
-**输入**
-
-```md
-::: code-group
-
-<!-- 文件名默认用作标题 -->
-
-<<< @/snippets/snippet.js
-
-<!-- 也可以提供定制的代码组 -->
-
-<<< @/snippets/snippet-with-region.js#snippet{1,2 ts:line-numbers} [snippet with region]
-
-:::
-```
-
-**输出**
-
-::: code-group
-
-<<< @/snippets/snippet.js
-
-<<< @/snippets/snippet-with-region.js#snippet{1,2 ts:line-numbers} [snippet with region]
-
-:::
-
 ## More
 
 Check out the documentation for the [full list of markdown extensions](https://vitepress.dev/guide/markdown).
