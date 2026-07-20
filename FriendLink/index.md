@@ -6,6 +6,5 @@ title: 友链
 <script setup>
 import FriendLinkPage from './FriendLinkPage.vue'
 </script>
-<ClientOnly>
-  <FriendLinkPage />
-</ClientOnly>
+
+<FriendLinkPage />

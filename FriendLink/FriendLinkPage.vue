@@ -1,176 +1,208 @@
 <template>
-    <div class="links-page">
-        <div class="archive-container">
-            <div class="filter-section">
-                <h3 class="linkss-title a-card">友链</h3>
-            </div>
+  <section class="friend-links" aria-label="友情链接">
+    <ul v-if="friendlinks.length" class="friend-links__grid">
+      <li v-for="(link, index) in friendlinks" :key="`${link.Url}-${index}`" class="friend-links__item">
+        <a
+          class="friend-links__link"
+          :class="{ 'has-description': link.Desc }"
+          :href="link.Url"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="friend-links__avatar" aria-hidden="true">
+            <span class="friend-links__initial">{{ getInitial(link.Name) }}</span>
+            <img
+              v-if="link.Avatar && !failedAvatars.has(link.Url)"
+              :src="link.Avatar"
+              alt=""
+              @error="markAvatarFailed(link.Url)"
+            />
+          </span>
 
-            <!-- 友链列表 -->
-            <div class="links">
-                <ul>
-                    <li v-for="(link, index) in friendlinks" :key="index" class="a-card" >
-                        <a :href="link.Url" target="_blank" rel="noopener noreferrer">
-                            <div class="link-avatar-wrapper">
-                                <img :src="link.Avatar" :alt="link.Name" />
-                            </div>
-                            <span class="sitename">{{ link.Name }}</span>
-                            <p class="linkdes">{{ link.Desc }}</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+          <span class="friend-links__copy">
+            <span class="friend-links__name">{{ link.Name }}</span>
+            <span v-if="link.Desc" class="friend-links__description">{{ link.Desc }}</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <p v-else class="friend-links__empty" role="status">暂无友链。</p>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useData } from 'vitepress'
-const { theme } = useData()
 
-// 获取友链数据
-const friendlinks = computed(() => {
-    return theme.value.friendlink || []
-})
+interface FriendLink {
+  Name: string
+  Url: string
+  Avatar?: string
+  Desc?: string
+}
+
+interface FriendLinkTheme {
+  friendlink?: FriendLink[]
+}
+
+const { theme } = useData<FriendLinkTheme>()
+const failedAvatars = ref(new Set<string>())
+
+const friendlinks = computed(() => theme.value.friendlink ?? [])
+
+const getInitial = (name: string) => [...name.trim()][0]?.toUpperCase() ?? '?'
+
+const markAvatarFailed = (url: FriendLink['Url']) => {
+  failedAvatars.value = new Set(failedAvatars.value).add(url)
+}
 </script>
 
-<style lang="css" scoped>
-/* 基础变量 */
-.links-page {
-    --link-card-bg: rgba(255, 255, 255, 0.5);
-    --link-card-bg-hover: rgba(255, 255, 255, 0.8);
-    --link-card-border: 1.5px solid #FFFFFF;
-    --link-card-border-radius: 10px;
-    --link-card-text: #505050;
-    --link-card-shadow: #e8e8e8;
-    --link-card-shadow-hover: #e8e8e8;
+<style scoped>
+.friend-links {
+  --friend-link-avatar-size: 3.25rem;
+
+  margin-block: 0 3rem;
 }
 
-.archive-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+.friend-links__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 0.875rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.filter-section {
-    background: #f8f9fa00;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-    
+.friend-links__item {
+  min-width: 0;
 }
 
-/* 标题样式 */
-.linkss-title {
-    font-size: 30px;
-    text-align: center;
-    display: block;
-    margin: 0;
-    letter-spacing: 2px;
-    font-weight: bold;
-    color: #2c3e50;
-    padding: 20px;
+.friend-links__link {
+  display: grid;
+  grid-template-columns: var(--friend-link-avatar-size) minmax(0, 1fr);
+  gap: 0.875rem;
+  align-items: center;
+  min-height: 5rem;
+  padding: 0.875rem;
+  color: inherit;
+  text-decoration: none;
+  background: color-mix(in srgb, var(--vp-c-content-surface) 82%, transparent);
+  border: 1px solid var(--vp-c-content-surface-border);
+  border-radius: 8px;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
 }
 
-/* 布局样式 */
-.links {
-    margin-bottom: 80px;
+.friend-links__link:hover {
+  background: color-mix(in srgb, var(--vp-c-content-surface) 90%, var(--vp-c-brand) 10%);
+  border-color: color-mix(in srgb, var(--vp-c-content-surface-border) 58%, var(--vp-c-brand));
 }
 
-.links ul {
-    margin: 50px 0 0;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-    gap: 20px;
-    cursor: auto;
-    padding: 0;
-    list-style: none;
+.friend-links__link:focus-visible {
+  outline: 2px solid var(--vp-c-brand);
+  outline-offset: 2px;
 }
 
-/* 链接卡片基础样式 */
-.links ul li {
-    min-width: 0;
-    box-shadow: 0 1px 30px -4px var(--link-card-shadow);
-    background: var(--link-card-bg);
-    padding: 12px;
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--link-card-border-radius);
-    border: var(--link-card-border);
-    transition: all 0.3s ease;
+.friend-links__avatar {
+  position: relative;
+  display: grid;
+  width: var(--friend-link-avatar-size);
+  height: var(--friend-link-avatar-size);
+  overflow: hidden;
+  color: var(--vp-c-bg);
+  background: color-mix(in srgb, var(--vp-c-brand) 72%, var(--vp-c-bg));
+  border: 1px solid color-mix(in srgb, var(--vp-c-brand) 42%, var(--vp-c-divider));
+  border-radius: 50%;
+  place-items: center;
 }
 
-/* 链接卡片悬停效果 */
-.links ul li:hover {
-    box-shadow: 0 1px 20px 10px var(--link-card-shadow-hover);
-    background: var(--link-card-bg-hover);
+.friend-links__avatar img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  object-fit: cover;
 }
 
-/* 卡片内部图片样式 */
-.link-avatar-wrapper {
-    position: relative;
-    display: inline-block;
-    margin: 3px 3px 0;
+.friend-links__initial {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
 }
 
-.links ul li img {
-    width: 90px;
-    height: 90px;
-    border-radius: 100%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.5s ease;
+.friend-links__copy {
+  position: relative;
+  display: block;
+  height: var(--friend-link-avatar-size);
+  min-width: 0;
+  overflow: hidden;
 }
 
-.links ul li:hover img {
-    transform: rotate(360deg);
+.friend-links__name {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition:
+    opacity 140ms ease,
+    transform 180ms ease;
 }
 
-/* 站点名称样式 */
-span.sitename {
-    font-size: 20px;
-    margin: 8px 8px 0 8px;
-    display: block;
-    transition: all 0.4s ease-in-out;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-weight: bold;
+.friend-links__name {
+  color: var(--vp-c-text-1);
+  font-size: 0.975rem;
+  font-weight: 600;
 }
 
-/* 链接描述样式 */
-.linkdes {
-    font-size: 14px;
-    margin: 0 8px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    line-height: 30px;
-    transition: all 0.4s ease-in-out;
+.friend-links__description {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--vp-c-text-2);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  transform: translateY(calc(var(--friend-link-avatar-size) - 1.35em));
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (max-width: 860px) {
-    .linkss-title {
-        font-size: 24px;
-    }
+.friend-links__empty {
+  margin: 0;
+  padding: 1.25rem 0;
+  color: var(--vp-c-text-2);
+  text-align: center;
 }
 
-/* 深色模式 */
-body.dark .links-page {
-    --link-card-bg: rgba(40, 40, 40, 0.8);
-    --link-card-bg-hover: rgba(60, 60, 60, 0.9);
-    --link-card-border: 1.5px solid #444;
-    --link-card-text: #e0e0e0;
-    --link-card-shadow: rgba(0, 0, 0, 0.3);
-    --link-card-shadow-hover: rgba(0, 0, 0, 0.5);
+@media (hover: hover) and (pointer: fine) {
+  .friend-links__link.has-description:is(:hover, :focus-visible) .friend-links__name {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+
+  .friend-links__link.has-description:is(:hover, :focus-visible) .friend-links__description {
+    -webkit-line-clamp: 3;
+    transform: translateY(0);
+  }
 }
 
-body.dark .filter-section {
-    background: #2c2c2c;
-}
-
-body.dark .linkss-title {
-    color: #e0e0e0;
+@media (prefers-reduced-motion: reduce) {
+  .friend-links__link,
+  .friend-links__name,
+  .friend-links__description {
+    transition: none;
+  }
 }
 </style>
