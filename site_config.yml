@@ -3,8 +3,8 @@
 # Example: public/image/avatar.png -> "/image/avatar.png"
 
 # Site information
-site_name: "My Awesome Site"
-site_description: "这是一个使用 VitePress 构建的博客站点。"
+site_name: "VitePress-Butterfly"
+site_description: "这是一个使用 VitePress-Butterfly 主题构建的博客站点。"
 # SEO uses this as the canonical domain and sitemap host.
 site_url: "https://example.com/"
 lang: "zh-CN"
@@ -63,11 +63,11 @@ menuItems:
 # Navigation music player
 # volume range: 0 ~ 1.
 musicPlayer:
-  enabled: false
-  url: "https://music.163.com/song/media/outer/url?id=3372997533.mp3"
-  name: "lofi bbox"
-  artist: "Shi Nian Yi Shi"
-  cover: "https://p2.music.126.net/5GL5jxLP9LCi6HpqXwKJfQ==/109951173099535524.jpg"
+  enabled: true
+  url: "https://music.163.com/song/media/outer/url?id=2680551039.mp3"
+  name: "Heartbeat Hz"
+  artist: "True Hertz"
+  cover: "https://p1.music.126.net/fpImsJysVDKf5fJSV-Nygw==/109951170536921989.jpg?param=90y90"
   autoplay: false
   volume: 0.6
 
